@@ -6,10 +6,6 @@ import 'dart:html' as html;
 import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:polymer/polymer.dart';
 
-import 'package:nameservicemanager/nameservicemanager.dart';
-import 'package:nameservicemanager/message_dialog.dart';
-import 'package:nameservicemanager/ns_inspector.dart';
-
 import 'package:wasanbon_xmlrpc/wasanbon_xmlrpc.dart';
 import 'package:polymer_elements/iron_icon.dart';
 import 'package:polymer_elements/iron_collapse.dart';
