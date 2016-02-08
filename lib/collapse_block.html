@@ -1,0 +1,48 @@
+
+<link rel="import" href="../../packages/polymer_elements/iron_icons.html">
+<link rel="import" href="../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../packages/polymer_elements/iron_collapse.html">
+
+<link rel="import" href="../../packages/polymer_elements/paper_icon_button.html">
+<link rel="import" href="../../packages/polymer_elements/paper_styles.html">
+<link rel="import" href="../../packages/polymer_elements/paper_toolbar.html">
+
+<dom-module id="collapse-block" attributes="name, state, group">
+    <template>
+        <style>
+            :host {
+            }
+
+            :host > paper-toolbar {
+                color: var(--collapse-block-toolbar-color);
+                background-color: var(--collapse-block-toolbar-background-color, red);
+                @apply(--collapse-block-toolbar);
+                height: var(--collapse-block-toolbar-height, 64px);
+            }
+
+            iron-collapse#i-collapse {
+                border-style: solid;
+                border-width: 1px;
+                border-color: var(--collapse-block-collapse-border-color, #828282);
+                @apply(--collapse-block-collapse);
+                background-color: var(--collapse-block-collapse-background-color, #e2e2e2)
+            }
+
+            #container {
+                margin: 5px;
+            }
+        </style>
+
+        <paper-toolbar id="toolbar">
+            <paper-icon-button icon="menu" on-tap="toggle"></paper-icon-button>
+            <span class="layout flex">{{name}}</span>
+            <content select=".toolbar-icon"></content>
+        </paper-toolbar>
+        <iron-collapse id="i-collapse">
+            <div id="container" class="layout vertical">
+                <content></content>
+            </div>
+        </iron-collapse>
+    </template>
+    <script type="application/dart" src="collapse_block.dart"></script>
+</dom-module>

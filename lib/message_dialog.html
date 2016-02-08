@@ -1,0 +1,102 @@
+
+
+<link rel="import" href="../../packages/polymer_elements/paper_dialog.html" >
+<link rel="import" href="../../packages/polymer_elements/paper_dialog_scrollable.html" >
+<link rel="import" href="../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../packages/polymer_elements/paper_button.html" >
+
+<link rel="import" href="../../packages/polymer_elements/paper_input.html" >
+<link rel="import" href="../../packages/polymer_elements/neon_animation.html">
+
+
+<dom-module id="dialog-base" attributes="header, msg">
+    <template>
+        <style>
+
+            :host {
+                --dark-primary-color: #512DA8;
+                --default-primary-color : #673AB7;
+                --light-primary-color : #D1C4E9;
+                --text-primary-color : #FFFFFF;
+                --accent-color : #FF5722;
+                --primary-text-color: #212121;
+                --secondary-text-color: #727272;
+                --divider-color : #B6B6B6;
+            }
+
+            paper-dialog {
+                padding: 0px;
+            }
+
+            #header {
+                margin:0px;
+                height: 10px;
+                background-color: var(--message-dialog-top-color, --dark-primary-color);
+            }
+            paper-button {
+                color: var(--message-dialog-button-color, --text-primary-color);
+                background-color: var(--message-dialog-button-background-color, --default-primary-color);
+            }
+            h2 {
+                margin-top: 5px;
+            }
+        </style>
+
+        <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+            <div id="header"></div>
+            <h2 id="header_msg">{{header}}</h2>
+            <paper-dialog-scrollable >
+                <div id="message_box">{{msg}}</div>
+            </paper-dialog-scrollable>
+            <div class="buttons horizontal layout" >
+                <content></content>
+            </div>
+        </paper-dialog>
+    </template>
+    <script type="application/dart" src="message_dialog.dart"></script>
+</dom-module>
+
+
+<dom-module id="message-dialog">
+    <template>
+        <style>
+        </style>
+        <dialog-base id="dialog">
+            <paper-button dialog-confirm>OK</paper-button>
+        </dialog-base>
+    </template>
+    <script type="application/dart" src="message_dialog.dart"></script>
+</dom-module>
+
+<dom-module id="confirm-dialog" attributes="header, msg">
+    <template>
+        <style>
+        </style>
+        <dialog-base id="dialog">
+            <paper-button dialog-dismiss>CANCEL</paper-button>
+            <paper-button dialog-confirm on-tap="onOk">OK</paper-button>
+        </dialog-base>
+    </template>
+    <script type="application/dart" src="message_dialog.dart"></script>
+</dom-module>
+
+<dom-module id="input-dialog" attributes="header, msg">
+    <template>
+        <style>
+            paper-button {
+                color: var(--input-dialog-button-color, --text-primary-color);
+                background-color: var(--input-dialog-button-background-color, --default-primary-color);
+            }
+        </style>
+        <dialog-base id="dialog">
+            <div class="layout vertical">
+                <paper-input class="flex-stretch-align" id="input-box" value="{{value}}" label="hoge"></paper-input>
+                <div class="flex layout horizontal">
+                    <paper-button dialog-dismiss>CANCEL</paper-button>
+                    <paper-button dialog-confirm  on-tap="onOk">OK</paper-button>
+                </div>
+            </div>
+        </dialog-base>
+    </template>
+    <script type="application/dart" src="message_dialog.dart"></script>
+</dom-module>

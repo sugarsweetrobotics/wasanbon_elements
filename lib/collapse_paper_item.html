@@ -1,0 +1,42 @@
+<link rel="import" href="../../packages/polymer_elements/paper_styles.html">
+<link rel="import" href="../../packages/polymer_elements/iron_flex_layout.html" >
+
+<link rel="import" href="../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../packages/polymer_elements/av_icons.html" >
+<
+<link rel="import" href="../../packages/polymer_elements/iron_collapse.html" >
+
+<link rel="import" href="../../packages/polymer_elements/paper_menu.html" >
+<link rel="import" href="../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../packages/polymer_elements/paper_item_body.html" >
+
+<dom-module id="collapse-paper-item">
+    <template>
+        <style>
+            :host paper-item.prop-item > iron-icon {
+                width: 40px;
+            }
+
+            :host .prop-item {
+                height: 40px;
+                margin-left: 0px;
+            }
+
+
+        </style>
+        <paper-item class="prop-item layout horizontal" on-tap="onPropTap">
+            <iron-icon id="prop-menu-icon" icon=""></iron-icon>
+            <paper-item-body class="flex">
+                <div  id="title-content">
+                <content select="span"></content>
+                </div>
+            </paper-item-body>
+        </paper-item>
+        <iron-collapse id="prop-menu-collapse" class="prop-collapse">
+            <div id="menu-content">
+                <content></content>
+            </div>
+        </iron-collapse>
+    </template>
+    <script type="application/dart" src="collapse_paper_item.dart"></script>
+</dom-module>
