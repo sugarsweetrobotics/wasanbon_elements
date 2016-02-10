@@ -13,6 +13,6 @@ class WasanbonToolbar extends PolymerElement {
 
   @reflectable
   void onTap(var e, var d) {
-    html.window.location.assign('../');
+    html.window.location.assign('http://${Uri.base.host}:${Uri.base.port}');
   }
 }
