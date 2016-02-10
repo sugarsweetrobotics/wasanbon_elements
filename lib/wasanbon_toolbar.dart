@@ -1,6 +1,6 @@
 
 @HtmlImport('wasanbon_toolbar.html')
-library setting_tool;
+library wasanbon_toolbar;
 
 import 'dart:html' as html;
 import 'package:web_components/web_components.dart' show HtmlImport;
