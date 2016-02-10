@@ -1,0 +1,38 @@
+
+<link ref="import" href="../packages/polymer_elements/paper_button.html">
+<link ref="import" href="../packages/polymer_elements/iron_icon.html">
+<dom-module id="wasanbon-toolbar">
+    <template>
+        <style>
+            :host #toolbar {
+                background: #585858;
+            }
+
+            :host > #toolbar > paper-button {
+                font-size: 12px;
+                height: 24px;
+                border-radius: 8px;
+                padding-top:2px;
+                padding-left:4px;
+                /* background-color: #a9a9a9;*/
+                color: white;
+                margin-top:3px;
+                margin-bottom:3px;
+            }
+
+            :host > #toolbar > paper-button > iron-icon {
+                height: 20px;
+                color: white;
+                width: 20px;
+            }
+
+        </style>
+        <div id="toolbar">
+            <paper-button  on-tap="onTap">
+                <iron-icon icon="chevron-left"></iron-icon>
+                Wasanbon Web Index
+            </paper-button>
+        </div>
+    </template>
+    <script type="application/dart" src="wasanbon_toolbar.dart"></script>
+</dom-module>
