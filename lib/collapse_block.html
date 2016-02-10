@@ -7,7 +7,7 @@
 <link rel="import" href="../../packages/polymer_elements/paper_styles.html">
 <link rel="import" href="../../packages/polymer_elements/paper_toolbar.html">
 
-<dom-module id="collapse-block" attributes="toolbarTitle state group">
+<dom-module id="collapse-block" attributes="name state group">
     <template>
         <style>
             :host {
@@ -35,7 +35,7 @@
 
         <paper-toolbar id="toolbar">
             <paper-icon-button icon="menu" on-tap="toggle"></paper-icon-button>
-            <span class="layout flex">{{toolbarTitle}}</span>
+            <span class="layout flex">{{name}}</span>
             <content select=".toolbar-icon"></content>
         </paper-toolbar>
         <iron-collapse id="i-collapse">
