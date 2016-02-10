@@ -22,7 +22,7 @@ class WasanbonToolbar extends PolymerElement {
 
   void attached() {
 //    onback = new async.Stream.empty();
-    onBack = () {};
+    onBack = (var e, var d) {};
   }
 
   void goBack() {
