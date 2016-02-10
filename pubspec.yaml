@@ -1,5 +1,5 @@
 name: wasanbon_elements
-version: 0.0.5
+version: 0.0.6
 description: A library useful for applications or for sharing on pub.dartlang.org.
 dependencies:
   browser: any

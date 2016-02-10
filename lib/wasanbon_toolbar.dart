@@ -6,11 +6,6 @@ import 'dart:html' as html;
 import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:polymer/polymer.dart';
 
-import 'global_information_manager.dart';
-import 'application_manager.dart';
-
-import 'package:polymer_elements/paper_dialog.dart';
-
 @PolymerRegister('wasanbon-toolbar')
 class WasanbonToolbar extends PolymerElement {
 
