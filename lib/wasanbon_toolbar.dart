@@ -13,7 +13,7 @@ class WasanbonToolbar extends PolymerElement {
   WasanbonToolbar.created() : super.created();
 
   async.StreamController<html.MouseEvent> _onBack = new async.StreamController<html.MouseEvent>();
-  async.Stream get onBack => _onBack.stream;
+  async.Stream get onBack => _onBack.stream.asBroadcastStream();
 
   void attached() {
   }

@@ -1,0 +1,179 @@
+
+<link rel="import" href="../../../packages/polymer_elements/paper_drawer_panel.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_toolbar.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_icon_button.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_card.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_item_body.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_checkbox.html" >
+<link rel="import" href="../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_styles.html" >
+
+<link rel="import" href="../collapse_block.html" >
+<link rel="import" href="../message_dialog.html" >
+
+<dom-module id="package-rtc-card">
+    <template>
+        <style>
+            :host > paper-card {
+                padding: 2px 0 2px 20px;
+                display: block;
+                --paper-item-disabled-color: #212121;
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-bottom: 2px;
+                background-color: white;
+            }
+        </style>
+        <paper-card disabled>
+            <paper-item-body two-line>
+                <div>{{packageName}}</div>
+                <div secondary>RTC</div>
+            </paper-item-body>
+        </paper-card>
+    </template>
+    <script type="application/dart" src="package_launcher.dart"></script>
+</dom-module>
+
+<dom-module id="package-launcher">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+                --collapse-block-toolbar-background-color:#FF9800;
+            }
+
+
+            :host > #title-area {
+                background-color: #FFE0B2;
+
+                margin-top: 1px;
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            :host paper-card {
+                padding: 2px 0 2px 20px;
+            }
+
+
+            :host div.command-container {
+                height: 50px;
+                padding: 2px 0 2px 0px;
+            }
+
+            :host paper-card paper-button {
+                text-transform: none;
+                width: 200px;
+                background-color: #FF9800;
+                border-radius: 8px;
+            }
+
+            :host paper-checkbox {
+                margin-left: 40px;
+                margin-right: 2px;
+            }
+
+            :host #package-content paper-card {
+                display: block;
+                --paper-item-disabled-color: #212121;
+                margin-left: 15px;
+                margin-right: 15px;
+                margin-bottom: 2px;
+                background-color: white;
+            }
+
+            :host #package-info-content > span {
+                margin-left: 10px;
+            }
+            :host #package-launch-content {
+                margin-top: 10px;
+            }
+
+            :host #package-rtc-content > span {
+                margin-left: 10px;
+            }
+            :host #package-rtc-content {
+                margin-top: 10px;
+            }
+
+
+            :host #package-launch-content > span {
+
+                margin-left: 10px;
+            }
+
+        </style>
+        <collapse-block name="{{packageName}}" id="title-area" class="flex layout">
+            <paper-icon-button class="toolbar-icon" icon="refresh" on-tap="onRefresh"></paper-icon-button>
+            <div id="package-content">
+                <div id="package-info-content">
+                    <span>Package Information</span>
+                    <paper-card disabled>
+                        <paper-item-body two-line>
+                            <div>{{packageName}}</div>
+                            <div secondary>packageInfo.name</div>
+                        </paper-item-body>
+                    </paper-card>
+                    <paper-card disabled>
+                        <paper-item-body two-line>
+                            <div>{{packageDescription}}</div>
+                            <div secondary>packageInfo.description</div>
+                        </paper-item-body>
+                    </paper-card>
+                    <paper-card disabled>
+                        <paper-item-body two-line>
+                            <div>{{packagePath}}</div>
+                            <div secondary>packageInfo.path</div>
+                        </paper-item-body>
+                    </paper-card>
+                </div>
+
+                <div id="package-rtc-content">
+                    <span>RTCs</span>
+                    <div id="rtc-card-content">
+
+                    </div>
+                </div>
+
+                <div id="package-launch-content">
+                    <span>Package Launch Management</span>
+                    <paper-card id="run-content" class="container vertical layout">
+                        <div id="run" class="command-container layout horizontal">
+                            <paper-button on-tap="onRun">
+                                <iron-icon icon="power-settings-new"></iron-icon>
+                                <span>Run</span>
+
+                            </paper-button>
+                            <span class="flex self-center">Start System</span>
+                        </div>
+                        <div id="plain-run" class="command-container layout horizontal" >
+                            <paper-checkbox id='plain-run-checkbox' class="self-center"></paper-checkbox>
+                            <span class="flex self-center">Start without Building System</span>
+                        </div>
+                        <div id="inactive-run" class="command-container layout horizontal" >
+                            <paper-checkbox id='inactive-run-checkbox' class="self-center"></paper-checkbox>
+                            <span class="flex self-center">Start without Activation</span>
+                        </div>
+                    </paper-card>
+
+                    <paper-card id="terminate-content" class="container vertical layout">
+                        <div id="terminate" class="command-container layout horizontal">
+                            <paper-button on-tap="onTerminate">Terminate</paper-button>
+                            <span class="flex self-center">Terminate System</span>
+                        </div>
+                    </paper-card>
+                </div>
+            </div>
+
+
+            <paper-card id="error-content" class="content">
+                <div>wasanbon web service might not be launched.</div>
+            </paper-card>
+
+        </collapse-block>
+        <message-dialog id="message-dialog"></message-dialog>
+    </template>
+
+    <script type="application/dart" src="package_launcher.dart"></script>
+</dom-module>

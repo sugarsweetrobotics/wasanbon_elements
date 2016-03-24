@@ -14,15 +14,15 @@ import 'package:polymer_elements/paper_input.dart';
 class DialogBase extends PolymerElement {
 
   async.StreamController<html.Event> _onOKEvent = new async.StreamController<html.Event>();
-  async.Stream get onOK => _onOKEvent.stream;
+  async.Stream get onOK => _onOKEvent.stream.asBroadcastStream();
 
 
   async.StreamController<html.Event> _onCanceledEvent = new async.StreamController<html.Event>();
-  async.Stream get onCanceled => _onCanceledEvent.stream;
+  async.Stream get onCanceled => _onCanceledEvent.stream.asBroadcastStream();
 
 
   async.StreamController<html.Event> _onClosedEvent = new async.StreamController<html.Event>();
-  async.Stream get onClosed => _onClosedEvent.stream;
+  async.Stream get onClosed => _onClosedEvent.stream.asBroadcastStream();
 
   @property String header = 'Header';
   @property String msg = 'Here is the message';

@@ -1,0 +1,114 @@
+
+<link rel="import" href="../../../packages/polymer_elements/paper_drawer_panel.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_toolbar.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_icon_button.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_card.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_item_body.html" >
+<link rel="import" href="../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_styles.html" >
+<link rel="import" href="../collapse_block.html" >
+<link rel="import" href="../message_dialog.html" >
+
+<dom-module id="package-card">
+    <template>
+        <style>
+            :host {
+                width: 100%;
+            }
+
+
+            :host > #title-area {
+                background-color: #FFE0B2;
+
+                margin-top: 1px;
+                border-radius: 5px;
+            }
+
+            :host paper-button {
+                text-transform: none;
+            }
+        </style>
+        <div id="title-area" class="flex horizontal layout" on-tap="onTap">
+            <paper-button class="flex horizontal layout">
+                <iron-icon id="rtc-prop-icon" icon="folder" class="self-center layout"></iron-icon>
+                <div class="self-center layout">
+                    <paper-item-body>
+                        {{packageName}}
+                    </paper-item-body>
+                </div>
+            </paper-button>
+        </div>
+    </template>
+
+    <script type="application/dart" src="package_selector.dart"></script>
+</dom-module>
+
+<dom-module id="package-selector">
+    <template>
+        <style>
+
+            :host > #main-drawer-panel #drawer-container #main-drawer-toolbar {
+                background-color: var(--package-launcher-drawer-toolbar-background-color, #FF9800);
+            }
+
+
+            :host > #main-drawer-panel #drawer-content {
+                overflow-y: scroll;
+            }
+
+
+            :host > #main-drawer-panel #drawer-content #package-content > * {
+                width: auto;
+                background-color: green;
+            }
+
+            :host > #main-drawer-panel #drawer-content #package-content {
+                display: none;
+            }
+
+            :host > #main-drawer-panel #drawer-content #error-content {
+                display: block;
+                margin: 10px;
+            }
+            :host > #main-drawer-panel #drawer-content #load_spinner {
+                display: none;
+            }
+
+            :host package-card {
+                margin-bottom: 1px;
+            }
+
+            :host #main-container {
+                overflow-y: scroll;
+            }
+
+        </style>
+
+        <paper-drawer-panel id="main-drawer-panel">
+            <div drawer id="drawer-container" class="vertical layout">
+                <paper-toolbar id="main-drawer-toolbar">
+                    <span>Packages</span>
+                    <paper-icon-button icon="refresh" on-tap="onRefreshPackages"></paper-icon-button>
+                </paper-toolbar>
+
+                <div id="drawer-content" class="flex layout">
+                    <div id="load_spinner" class="flex horizontal center-justified layout">
+                        <paper-spinner alt="Loading contacts list" active></paper-spinner>
+                    </div>
+
+                    <paper-card id="package-content" class="vertical layout">
+                    </paper-card>
+
+                    <paper-card id="error-content" class="content">
+                        <div>wasanbon web service might not be launched.</div>
+                    </paper-card>
+                </div>
+            </div>
+
+            <div main id="main-container"><content></content></div>
+        </paper-drawer-panel>
+
+    </template>
+    <script type="application/dart" src="package_selector.dart"></script>
+</dom-module>

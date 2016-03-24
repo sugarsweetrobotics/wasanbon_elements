@@ -14,7 +14,7 @@ class CollapseBlock extends PolymerElement {
     return new html.Element.tag('collapse-block');
   }
 
-  @property var name = 'hoge';
+  @property var name = 'defaultCollapseBlockName';
   @property var state = 'closed';
   @property var group = 'defaultGroup';
 
