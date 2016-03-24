@@ -1,0 +1,163 @@
+
+<link rel="import" href="../../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_collapse.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/av_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/image_icons.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_styles.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_card.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_menu.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item_body.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_icon_button.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/neon_animation.html">
+
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_block.html" >
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_paper_item.html" >
+<link rel="import" href="port_prop_card.html" >
+<link rel="import" href="ns_configure_dialog.html" >
+
+<dom-module id="rtc-prop-card">
+    <template>
+        <style>
+            :host > #prop-card {
+                --paper-item-disabled-color: #212121;
+            }
+
+            :host > paper-item > iron-icon {
+                width: 40px;
+            }
+
+            :host > paper-item.prop-item {
+                height: 40px;
+                margin-left: 20px;
+            }
+        </style>
+        <paper-item class="prop-item layout horizontal" disabled id="prop-card">
+            <iron-icon id="rtc-prop-icon" icon="settings"></iron-icon>
+            <paper-item-body two-line class="flex">
+                <div>{{value}}</div>
+                <div secondary>{{name}}</div>
+            </paper-item-body>
+        </paper-item>
+    </template>
+    <script type="application/dart" src="rtc_card.dart"></script>
+</dom-module>
+
+
+<dom-module id="rtc-card" attributes="name, group, state">
+    <template>
+        <style>
+            :host paper-card#card {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                display: flex;
+                border-bottom: 1px solid #B6B6B6;
+                cursor: pointer;
+                background-color: #FFFFFF;
+
+                margin-left: 40px;
+                margin-right: 40px;
+                padding: 5px;
+            }
+
+            :host paper-card#detail-container {
+                width: 100%;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                display: flex;
+                cursor: pointer;
+                background-color: #FFFFFF;
+
+            }
+
+            :host iron-collapse#detail {
+                width: 100%;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                height: 600px;
+                background-color: #FFFFFF;
+            }
+
+            :host > #container {
+                margin: 0px 40px 0px 40px;
+            }
+
+            :host paper-icon-button.rtc-card-fab {
+                background-color: pink;
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+            }
+
+            :host paper-icon-button.state-change-button {
+                width: 30px;
+                height: 30px;
+                border-radius: 15px;
+                padding: 3px;
+            }
+
+            div.name {
+                margin-left: 20px;
+            }
+
+            div.card-content {
+                padding: 5px;
+            }
+
+            #detail {
+                width:100%;
+            }
+
+
+            :host .secondary-title {
+                font-size: 14px;
+                color: #727272;
+                font-family: 'Roboto', 'Noto', sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+        </style>
+
+        <div id="container">
+            <paper-card id="card" class="layout vertical">
+                <div class="card-content horizontal layout" id="card-content-bar" on-tap="onTap">
+                    <paper-icon-button id="rtc-icon" class="rtc-card-fab" icon="extension" on-tap="onTapIcon"></paper-icon-button>
+                    <div class="name layout self-center flex">{{name}}</div>
+                    <paper-icon-button class="state-change-button layout self-center" on-tap="onActivateRTC" icon="av:play-arrow"></paper-icon-button>
+                    <paper-icon-button class="state-change-button layout self-center" on-tap="onDeactivateRTC" icon="av:stop"></paper-icon-button>
+                    <paper-icon-button class="state-change-button layout self-center" on-tap="onResetRTC" icon="error"></paper-icon-button>
+                    <paper-icon-button class="state-change-button layout self-center" on-tap="onExitRTC" icon="clear"></paper-icon-button>
+                    <paper-icon-button class="state-change-button layout self-center" on-tap="onConfigureRTC" icon="settings"></paper-icon-button>
+                </div>
+                <iron-collapse id="detail" class="layout flex">
+                    <paper-menu id="rtc-prop-menu">
+                        <paper-menu id="basic-menu-content"></paper-menu>
+
+                        <collapse-paper-item id="port-menu">
+                            <span>Ports</span>
+                            <div id="port-menu-content" ></div>
+                        </collapse-paper-item>
+
+                        <collapse-paper-item id="conf-menu">
+                            <span>Configurations</span>
+                            <div id="conf-menu-content"></div>
+                        </collapse-paper-item>
+
+                        <collapse-paper-item id="prop-menu">
+                            <span>Properties</span>
+                            <div id="prop-menu-content"></div>
+                        </collapse-paper-item>
+
+                    </paper-menu>
+
+                </iron-collapse>
+            </paper-card>
+        </div>
+        <ns-configure-dialog id="configure-dialog"></ns-configure-dialog>
+    </template>
+    <script type="application/dart" src="rtc_card.dart"></script>
+</dom-module>

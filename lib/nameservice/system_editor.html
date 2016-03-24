@@ -1,0 +1,26 @@
+
+
+<link rel="import" href="../../../packages/polymer_elements/paper_icon_button.html" >
+<link rel="import" href="../../../packages/polymer_elements/iron_icons.html" >
+
+<link rel="import" href="system_editor/ns_inspector.html" >
+
+<dom-module id="system-editor" attributes="group, state">
+    <template>
+        <style>
+            :host > collapse-block.ns-system {
+                --collapse-block-toolbar-background-color: var(--system-editor-toolbar-background-color, #673AB7);
+            }
+
+        </style>
+
+        <collapse-block id="collapse-blk" name="System Editor" group="{{group}}" state="{{state}}" class="ns-system">
+            <paper-icon-button class="toolbar-icon" icon="settings-ethernet" on-tap="onConnect"></paper-icon-button>
+            <paper-icon-button class="toolbar-icon" icon="refresh" on-tap="onRefreshAll"></paper-icon-button>
+            <div id="ns-inspection-content"></div>
+        </collapse-block>
+        <input-dialog id="input-dialog"></input-dialog>
+        <message-dialog id="message-dialog"></message-dialog>
+    </template>
+    <script type="application/dart" src="system_editor.dart"></script>
+</dom-module>

@@ -1,0 +1,93 @@
+
+<link rel="import" href="../../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_collapse.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/av_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/social_icons.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_card.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_styles.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_spinner.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_icon_button.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_menu.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item_body.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/neon_animation.html">
+
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_block.html" >
+<link rel="import" href="rtc_card.html" >
+<link rel="import" href="ns_connection_dialog.html" >
+
+<dom-module id="ns-inspector" attributes="group, state">
+    <template>
+        <style>
+
+            :host {
+
+                --dark-primary-color: #512DA8;
+                --default-primary-color : #673AB7;
+                --light-primary-color : #D1C4E9;
+                --text-primary-color : #FFFFFF;
+                --accent-color : #FF5722;
+                --primary-text-color: #212121;
+                --secondary-text-color: #727272;
+                --divider-color : #B6B6B6;
+
+                margin-bottom: 10px;
+            }
+
+            .ns-inspect {
+                --collapse-block-toolbar-background-color: var(--default-primary-color);
+            }
+
+            :host > #content {
+                display : none;
+            }
+
+            :host > #load_spinner {
+                display : inline;
+            }
+
+            :host > #container > #load_spinner > paper-spinner {
+                margin: 0 auto;
+            }
+
+            .ns-address {
+                padding-left: 20px;
+            }
+
+            :host paper-icon-button.tool-icons {
+                width: 30px;
+                height: 30px;
+                border-radius: 15px;
+                padding: 3px;
+            }
+
+        </style>
+        <div id="container" class="vertical layout">
+            <div class="header layout horizontal">
+                <paper-icon-button class="tool-icons layout self-center" icon="close" on-tap="onClose"></paper-icon-button>
+                <paper-icon-button class="tool-icons layout self-center" icon="refresh" on-tap="onRefresh"></paper-icon-button>
+                <div class="ns-address flex layout self-center">{{address}}</div>
+                <div class="tool-area">
+                    <paper-icon-button id="connectButton" class="tool-icons layout self-center" icon="social:share" on-tap="onConnectRTCs"></paper-icon-button>
+                    <paper-icon-button id="activateAllButton" class="tool-icons layout self-center" icon="av:play-arrow" on-tap="onActivateAllRTCs"></paper-icon-button>
+                    <paper-icon-button id="deactivateAllButton" class="tool-icons layout self-center" icon="av:stop" on-tap="onDeactivateAllRTCs"></paper-icon-button>
+                    <paper-icon-button id="resetAllButton" class="tool-icons layout self-center" icon="error" on-tap="onResetAllRTCs"></paper-icon-button>
+                </div>
+            </div>
+            <div id="load_spinner" class="flex horizontal center-justified layout">
+                <paper-spinner alt="Loading contacts list" active></paper-spinner>
+            </div>
+            <div id="content"></div>
+        </div>
+
+        <input-dialog id="input-dialog"></input-dialog>
+        <confirm-dialog id="confirm-dialog"></confirm-dialog>
+        <message-dialog id="message-dialog"></message-dialog>
+        <ns-connection-dialog id="connection-dialog"></ns-connection-dialog>
+    </template>
+    <script type="application/dart" src="ns_inspector.dart"></script>
+</dom-module>

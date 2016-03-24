@@ -1,0 +1,140 @@
+
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_dialog.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_dialog_scrollable.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_button.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_input.html" >
+<link rel="import" href="../../../../packages/polymer_elements/neon_animation.html">
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_paper_item.html">
+
+<dom-module id="conf-card">
+    <template>
+        <style>
+            :host {
+                width: 90%;
+            }
+
+            :host #conf-name {
+                width: 300px;
+            }
+
+            :host #conf-widget {
+                padding: 0 10px;
+            }
+
+            :host > #conf-card-container {
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+
+        </style>
+
+        <div id="conf-card-container" class="horizontal layout">
+            <iron-icon class="self-center layout" icon="chevron-right"></iron-icon>
+            <div class="self-center layout" id="conf-name">{{confName}}</div>
+            <div id="conf-widget">
+                <div class="self-center layout" id="text-widget">
+                    <paper-input label="{{confName}}" value="{{confValue}}"></paper-input>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script type="application/dart" src="ns_configure_dialog.dart"></script>
+</dom-module>
+
+
+<dom-module id="ns-configure-tool">
+    <template>
+        <style>
+            :host {}
+
+            :host > #container {
+            }
+
+            :host #container > #card > .card-content {
+                padding: 0px;
+                width: 400px;
+            }
+
+            :host > #container #card .information-tag {
+                font-size : 14px;
+                color: #727272;
+            }
+
+        </style>
+
+        <div id="container">
+            <paper-card id="card" class="layout vertical">
+                <div id="detail">
+                    <div id="configure-content"></div>
+                </div>
+            </paper-card>
+        </div>
+    </template>
+    <script type="application/dart" src="ns_configure_dialog.dart"></script>
+</dom-module>
+
+<dom-module id="ns-configure-dialog" attributes="header, msg">
+    <template>
+        <style>
+
+            :host {
+                --dark-primary-color: #512DA8;
+                --default-primary-color : #673AB7;
+                --light-primary-color : #D1C4E9;
+                --text-primary-color : #FFFFFF;
+                --accent-color : #FF5722;
+                --primary-text-color: #212121;
+                --secondary-text-color: #727272;
+                --divider-color : #B6B6B6;
+            }
+
+            :host > paper-dialog {
+                padding: 0px;
+                background-color: #E2E2E2;
+                width: 80%;
+            }
+
+
+            :host > paper-dialog > paper-dialog-scrollable {
+            }
+
+            :host paper-toolbar {
+                margin-top: 0px;
+                font-size: 18px;
+            }
+
+            paper-button {
+                color: var(--connect-dialog-button-color, --text-primary-color);
+                background-color: var(--connect-dialog-button-background-color, --default-primary-color);
+            }
+
+            :host #content {
+                /* padding: 20px; */
+            }
+
+            h2 {
+                margin-top: 5px;
+            }
+
+
+
+        </style>
+
+        <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+            <paper-toolbar>
+                <span>Configure Dialog</span>
+            </paper-toolbar>
+            <paper-dialog-scrollable >
+                <div id="content" ></div>
+            </paper-dialog-scrollable>
+            <div class="flex layout horizontal">
+                <paper-button dialog-dismiss on-tap="onCanceled">CANCEL</paper-button>
+                <paper-button dialog-confirm  on-tap="onOk">OK</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+    <script type="application/dart" src="ns_configure_dialog.dart"></script>
+</dom-module>

@@ -1,0 +1,80 @@
+
+
+<link rel="import" href="../../../packages/polymer_elements/paper_card.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_button.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_icon_button.html" >
+<link rel="import" href="../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../packages/polymer_elements/paper_input.html" >
+
+<link rel="import" href="../collapse_block.html" >
+<link rel="import" href="../message_dialog.html" >
+
+
+<dom-module id="host-ns-manager" attributes="group, state">
+    <template>
+        <style>
+
+            :host {
+
+            }
+
+            .container {
+                margin-top: 5px;
+            }
+
+            #host-ns-content > .container > paper-button {
+                width: var(--host-ns-manager-button-width, 200px);
+                background-color: var(--host-ns-manager-button-background-color, white);
+                color: var(--host-ns-manager-button-color);
+
+            }
+
+            #host-ns-content > .container > paper-input {
+                width: var(--host-ns-manager-button-width, 190px);
+                margin-right: 10px;
+                margin-left: 10px;
+                color: black;
+            }
+
+            span {
+                margin-left: 5px;
+            }
+
+            .host-ns-tool {
+                --collapse-block-toolbar-color: var(--host-ns-manager-toolbar-color, #ffffff);
+                --collapse-block-toolbar-background-color: var(--host-ns-manager-toolbar-background-color, #673AB7);
+            }
+
+            :host paper-card#host-ns-content {
+                margin: 10px 40px;
+                padding: 10px 10px;
+            }
+
+        </style>
+
+        <collapse-block class="host-ns-tool" name="Manage Host Naming Service" group="{{group}}" state="{{state}}">
+            <paper-card id="host-ns-content">
+                <div id="container01" class="container layout horizontal">
+                    <paper-input label="Port Number" value="{{port}}"></paper-input>
+                    <span class="flex self-center">Port Name of Naming Service</span>
+                </div>
+                <div id="container02" class="container layout horizontal">
+                    <paper-button on-tap="onCheck">Check</paper-button>
+                    <span class="flex self-center">CHECK a naming service in alive or not on host</span>
+                </div>
+                <div id="container03" class="container layout horizontal">
+                    <paper-button on-tap="onStart">Start</paper-button>
+                    <span class="flex self-center">START a naming service on host machine.</span>
+                </div>
+                <div id="container04" class="container layout horizontal">
+                    <paper-button on-tap="onStop">Stop</paper-button>
+                    <span class="flex self-center">STOP a naming service on host machine.</span>
+                </div>
+            </paper-card>
+        </collapse-block>
+
+        <message-dialog id="message-dialog"></message-dialog>
+    </template>
+    <script type="application/dart" src="host_ns_manager.dart"></script>
+</dom-module>

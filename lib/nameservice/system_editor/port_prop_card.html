@@ -1,0 +1,52 @@
+
+
+<link rel="import" href="../../../../packages/polymer_elements/iron_flex_layout.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_collapse.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/av_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/image_icons.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_styles.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_card.html">
+<link rel="import" href="../../../../packages/polymer_elements/paper_menu.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_item_body.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_icon_button.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/neon_animation.html">
+
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_block.html" >
+<link rel="import" href="../../../../packages/wasanbon_elements/collapse_paper_item.html" >
+
+
+<dom-module id="port-prop-card">
+    <template>
+        <style>
+            :host {}
+
+            :host > paper-item > iron-icon {
+                width: 40px;
+            }
+
+            :host > paper-item.prop-item {
+                height: 40px;
+                margin-left: 20px;
+            }
+
+        </style>
+        <paper-item class="prop-item layout horizontal" on-tap="onPropTap">
+            <iron-icon id="port-prop-icon" icon="menu"></iron-icon>
+            <paper-item-body two-line class="flex">
+                <div>{{value}}</div>
+                <div secondary>{{name}}</div>
+            </paper-item-body>
+        </paper-item>
+        <iron-collapse id="port-menu-collapse" class="prop-collapse">
+            <paper-menu id="port-prop-content">
+                <content id="port-menu-content"></content>
+            </paper-menu>
+        </iron-collapse>
+    </template>
+    <script type="application/dart" src="port_prop_card.dart"></script>
+</dom-module>

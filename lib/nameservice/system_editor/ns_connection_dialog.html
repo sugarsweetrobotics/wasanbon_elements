@@ -1,0 +1,152 @@
+
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_dialog.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_dialog_scrollable.html" >
+<link rel="import" href="../../../../packages/polymer_elements/iron_icons.html" >
+<link rel="import" href="../../../../packages/polymer_elements/paper_button.html" >
+
+<link rel="import" href="../../../../packages/polymer_elements/paper_input.html" >
+<link rel="import" href="../../../../packages/polymer_elements/neon_animation.html">
+
+<dom-module id="ns-connect-tool">
+    <template>
+        <style>
+
+            :host {
+
+            }
+
+            :host .card-content {
+                padding: 0px;
+            }
+
+            :host .connection-port {
+                width: 200px;
+            }
+
+            :host iron-icon#connected-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            :host iron-icon#disconnected-icon {
+                width: 40px;
+                height: 40px;
+
+            }
+
+        </style>
+
+
+        <div id="container">
+            <paper-card id="card" class="layout vertical">
+                <div class="card-content horizontal layout" id="card-content-bar">
+                    <paper-button  id="menu-button"  on-tap="onTap" class="self-center layout">
+                        <iron-icon icon="menu"></iron-icon>
+                    </paper-button>
+                    <div class="information layout horizontal">
+
+
+                        <div class="connection-port">
+                            <paper-item class="port-pair">
+                                <paper-item-body two-line>
+                                    <div>{{port0name}}</div>
+                                    <div secondary>{{port0component}}</div>
+                                </paper-item-body>
+                            </paper-item>
+                        </div>
+
+                        <iron-icon id="connected-icon" icon="settings-ethernet" class="layout self-center" ></iron-icon>
+                        <iron-icon id="disconnected-icon" icon="code" class="layout self-center"></iron-icon>
+
+                        <div class="connection-port">
+                            <paper-item class="port-pair">
+                                <paper-item-body two-line>
+                                    <div>{{port1name}}</div>
+                                    <div secondary>{{port1component}}</div>
+                                </paper-item-body>
+                            </paper-item>
+                        </div>
+
+                        <paper-button class="layout self-center" id="connect-btn" on-tap="onConnect">
+                            <iron-icon icon="settings-ethernet"></iron-icon>
+                            <div>Connect</div>
+                        </paper-button>
+
+                        <paper-button class="layout self-center" id="disconnect-btn" on-tap="onDisconnect">
+                            <iron-icon icon="content-cut"></iron-icon>
+                            <div>Disconnect</div>
+                        </paper-button>
+                    </div>
+
+                </div>
+                <iron-collapse id="detail" class="layout flex">
+                    <div>hogehogehoge</div>
+                    <paper-menu id="prop-menu">
+
+                    </paper-menu>
+                </iron-collapse>
+            </paper-card>
+        </div>
+
+
+
+
+    </template>
+    <script type="application/dart" src="ns_connection_dialog.dart"></script>
+</dom-module>
+
+<dom-module id="ns-connection-dialog" attributes="header, msg">
+    <template>
+        <style>
+
+            :host {
+                --dark-primary-color: #512DA8;
+                --default-primary-color : #673AB7;
+                --light-primary-color : #D1C4E9;
+                --text-primary-color : #FFFFFF;
+                --accent-color : #FF5722;
+                --primary-text-color: #212121;
+                --secondary-text-color: #727272;
+                --divider-color : #B6B6B6;
+            }
+
+            paper-dialog {
+                padding: 0px;
+                background-color: #E2E2E2;
+            }
+
+            :host paper-toolbar {
+                margin-top: 0px;
+                font-size: 18px;
+            }
+
+            paper-button {
+                color: var(--connect-dialog-button-color, --text-primary-color);
+                background-color: var(--connect-dialog-button-background-color, --default-primary-color);
+            }
+
+            :host #content {
+                padding: 20px;
+            }
+
+            h2 {
+                margin-top: 5px;
+            }
+        </style>
+
+        <paper-dialog id="dialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+            <paper-toolbar>
+                <span>Connection Dialog</span>
+            </paper-toolbar>
+            <paper-dialog-scrollable >
+                <div id="content" ></div>
+            </paper-dialog-scrollable>
+            <div class="flex layout horizontal">
+                <paper-button dialog-dismiss on-tap="onCanceled">CANCEL</paper-button>
+                <paper-button dialog-confirm  on-tap="onOk">OK</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+    <script type="application/dart" src="ns_connection_dialog.dart"></script>
+</dom-module>
