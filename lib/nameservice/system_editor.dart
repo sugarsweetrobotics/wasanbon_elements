@@ -29,27 +29,8 @@ class SystemEditor extends PolymerElement {
   void attached() {
     inputDialog = $$('input-dialog');
     messageDialog = $$('message-dialog');
-  }
 
-  bool isNameServiceAlreadyShown(NameService ns) {
-    bool return_value = false;
-    $$('#ns-inspection-content').children.forEach(
-        (html.Element e) {
-      if (e is NSInspector) {
-        if (e.nameService.name == ns.name) {
-          return_value = true;
-        }
-      }
-    }
-    );
-    return return_value;
-  }
-
-  @reflectable
-  void onConnect(var e, var detail) {
-    inputDialog.eventListener.ok.clear();
-    inputDialog.eventListener.ok.add(
-        (var e) {
+    inputDialog.ptr.onOK.listen((var e) {
       messageDialog.show("NameService", "Please Wait....");
       var hostname = inputDialog.value;
       var port = '2809';
@@ -83,6 +64,24 @@ class SystemEditor extends PolymerElement {
     }
     );
 
+  }
+
+  bool isNameServiceAlreadyShown(NameService ns) {
+    bool return_value = false;
+    $$('#ns-inspection-content').children.forEach(
+        (html.Element e) {
+      if (e is NSInspector) {
+        if (e.nameService.name == ns.name) {
+          return_value = true;
+        }
+      }
+    }
+    );
+    return return_value;
+  }
+
+  @reflectable
+  void onConnect(var e, var detail) {
     inputDialog.show("Connect Naming Service", "Input URL of Naming Service",
         "URL Naming Service", "localhost:2809");
   }

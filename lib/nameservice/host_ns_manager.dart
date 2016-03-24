@@ -15,7 +15,7 @@ import '../message_dialog.dart';
 class HostNSManager extends PolymerElement {
 
 
-  HostNSManager create() {
+  HostNSManager build() {
     return new Element.tag('host-ns-manager');
   }
 

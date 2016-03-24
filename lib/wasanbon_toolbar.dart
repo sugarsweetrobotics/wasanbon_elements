@@ -7,28 +7,20 @@ import 'dart:async' as async;
 import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:polymer/polymer.dart';
 
-
 @PolymerRegister('wasanbon-toolbar')
 class WasanbonToolbar extends PolymerElement {
 
-  @property
-  var onBack;
-
   WasanbonToolbar.created() : super.created();
 
-//  async.StreamController<dynamic> onback;
+  async.StreamController<html.MouseEvent> _onBack = new async.StreamController<html.MouseEvent>();
+  async.Stream get onBack => _onBack.stream;
 
   void attached() {
-//    onback = new async.Stream.empty();
-    onBack = (var e, var d) {};
-  }
-
-  void goBack() {
-    html.window.location.assign('http://${Uri.base.host}:${Uri.base.port}');
   }
 
   @reflectable
-  void onTap(var e, var d) {
-    onBack(e, d);
+  void onTapBack(var e, var d) {
+    print('WasanbonToolbar.onTapBack button clicekd');
+    _onBack.add(e);
   }
 }

@@ -55,6 +55,12 @@ class NSInspector extends PolymerElement {
 
     deactivateToolbar();
 
+
+    confirmDialog.ptr.onOK.listen((var e) {
+      parent.removeNSInspector(this);
+    }
+    );
+
   }
 
   void clearRTCs() {
@@ -96,13 +102,6 @@ class NSInspector extends PolymerElement {
 
   @reflectable
   void onClose(var e, var detail) {
-
-    confirmDialog.eventListener.ok.clear();
-    confirmDialog.eventListener.ok.add(
-        (var e) {
-          parent.removeNSInspector(this);
-        }
-    );
     confirmDialog.show('NameService', 'Remove from this view?');
 
   }

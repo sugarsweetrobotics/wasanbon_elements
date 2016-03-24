@@ -2,42 +2,42 @@
 @HtmlImport('message_dialog.html')
 library message_dialog;
 
-import 'dart:html';
+import 'dart:html' as html;
+import 'dart:async' as async;
 import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:polymer/polymer.dart';
 
 import 'package:polymer_elements/paper_dialog.dart';
 import 'package:polymer_elements/paper_input.dart';
 
-class DialogEventListener {
-
-  DialogEventListener();
-
-  var ok = [];
-  var close = [];
-  var cancel = [];
-}
-
-
-
 @PolymerRegister('dialog-base')
 class DialogBase extends PolymerElement {
+
+  async.StreamController<html.Event> _onOKEvent = new async.StreamController<html.Event>();
+  async.Stream get onOK => _onOKEvent.stream;
+
+
+  async.StreamController<html.Event> _onCanceledEvent = new async.StreamController<html.Event>();
+  async.Stream get onCanceled => _onCanceledEvent.stream;
+
+
+  async.StreamController<html.Event> _onClosedEvent = new async.StreamController<html.Event>();
+  async.Stream get onClosed => _onClosedEvent.stream;
 
   @property String header = 'Header';
   @property String msg = 'Here is the message';
 
   DialogBase.created() : super.created();
 
-  DialogEventListener eventListener = new DialogEventListener();
   @override
   void attached() {
     ($$('#dialog') as PaperDialog).addEventListener('iron-overlay-canceled',
         (var e) {
-          onCanceled(e);
+          onTapCanceled(e);
         });
     ($$('#dialog') as PaperDialog).addEventListener('iron-overlay-closed',
         (var e) {
-      onClosed(e);
+      onTapClosed(e);
     });
   }
 
@@ -65,22 +65,16 @@ class DialogBase extends PolymerElement {
   }
 
   @reflectable
-  void onOk(var e) {
-    for (var func in eventListener.ok) {
-      func(this);
-    }
+  void onTapOK(var e) {
+    _onOKEvent.add(e);
   }
 
-  void onCanceled(var e) {
-    for (var func in eventListener.cancel) {
-      func(this);
-    }
+  void onTapCanceled(var e) {
+    _onCanceledEvent.add(e);
   }
 
-  void onClosed(var e) {
-    for (var func in eventListener.close) {
-      func(this);
-    }
+  void onTapClosed(var e) {
+    _onClosedEvent.add(e);
   }
 }
 
@@ -90,7 +84,7 @@ class MessageDialog extends PolymerElement {
 
   MessageDialog.created() : super.created();
 
-  DialogEventListener get eventListener => ($$('#dialog') as DialogBase).eventListener;
+  DialogBase get ptr => $$('#dialog');
 
   @reflectable
   toggle() => ($$('#dialog') as DialogBase).toggle();
@@ -98,7 +92,7 @@ class MessageDialog extends PolymerElement {
   hide() => ($$('#dialog') as DialogBase).hide();
   updateText(header, message) => ($$('#dialog') as DialogBase).updateText(header, message);
   @reflectable
-  onOk(var e, var d) => ($$('#dialog') as DialogBase).onOk(e);
+  onOk(var e, var d) => ($$('#dialog') as DialogBase).onTapOK(e);
 }
 
 
@@ -107,7 +101,8 @@ class ConfirmDialog extends PolymerElement {
 
   ConfirmDialog.created() : super.created();
 
-  DialogEventListener get eventListener  => ($$('#dialog') as DialogBase).eventListener;
+
+  DialogBase get ptr => $$('#dialog');
 
   @reflectable
   toggle() => ($$('#dialog') as DialogBase).toggle();
@@ -116,17 +111,18 @@ class ConfirmDialog extends PolymerElement {
   updateText(header, message) => ($$('#dialog') as DialogBase).updateText(header, message);
 
   @reflectable
-  onOk(var e, var d) => ($$('#dialog') as DialogBase).onOk(e);
+  onOk(var e, var d) => ($$('#dialog') as DialogBase).onTapOK(e);
 }
 
 @PolymerRegister('input-dialog')
 class InputDialog extends PolymerElement {
 
+
+  DialogBase get ptr => $$('#dialog');
+
   @property String value;
 
   InputDialog.created() : super.created();
-
-  DialogEventListener get eventListener  => ($$('#dialog') as DialogBase).eventListener;
 
   @reflectable
   toggle() => ($$('#dialog') as DialogBase).toggle();
@@ -141,5 +137,5 @@ class InputDialog extends PolymerElement {
   updateText(header, message) => ($$('#dialog') as DialogBase).updateText(header, message);
 
   @reflectable
-  onOk(var e, var d) => ($$('#dialog') as DialogBase).onOk(e);
+  onOk(var e, var d) => ($$('#dialog') as DialogBase).onTapOK(e);
 }

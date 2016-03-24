@@ -2,7 +2,7 @@
 <link rel="import" href="../../packages/polymer_elements/paper_button.html">
 <link rel="import" href="../../packages/polymer_elements/iron_icon.html">
 
-<dom-module id="wasanbon-toolbar" attributes="onBack">
+<dom-module id="wasanbon-toolbar">
     <template>
         <style>
             :host #toolbar {
@@ -29,7 +29,7 @@
 
         </style>
         <div id="toolbar">
-            <paper-button  on-tap="onTap">
+            <paper-button id="back-button" on-tap="onTapBack">
                 <iron-icon icon="chevron-left"></iron-icon>
                 Wasanbon Web Index
             </paper-button>
